@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Card, CardContent } from "./ui/card"
 import { Input } from "./ui/input"
 import { Label } from "./ui/label"
@@ -15,6 +15,15 @@ export default function LeadGenROICalculator() {
   })
 
   const [results, setResults] = useState(null)
+  const [darkMode, setDarkMode] = useState(false)
+
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add("dark")
+    } else {
+      document.documentElement.classList.remove("dark")
+    }
+  }, [darkMode])
 
   const handleChange = (e) => {
     setInputs({ ...inputs, [e.target.name]: parseFloat(e.target.value) })
@@ -58,7 +67,15 @@ export default function LeadGenROICalculator() {
   return (
     <Card className="max-w-4xl mx-auto p-6 bg-white dark:bg-gray-900 shadow-2xl rounded-2xl text-gray-800 dark:text-gray-100">
       <CardContent>
-        <h2 className="text-3xl font-extrabold mb-6 text-center">Lead Gen ROI Calculator</h2>
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-3xl font-extrabold text-center w-full">Lead Gen ROI Calculator</h2>
+          <button
+            onClick={() => setDarkMode(!darkMode)}
+            className="absolute top-4 right-4 px-3 py-1 rounded border text-sm bg-gray-200 dark:bg-gray-700 dark:text-white"
+          >
+            {darkMode ? "🌞 Light Mode" : "🌙 Dark Mode"}
+          </button>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {Object.entries(inputs).map(([key, value]) => (
