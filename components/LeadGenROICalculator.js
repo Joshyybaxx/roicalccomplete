@@ -20,6 +20,10 @@ export default function LeadGenROICalculator() {
     setInputs({ ...inputs, [e.target.name]: parseFloat(e.target.value) })
   }
 
+  const formatNumber = (num) => {
+    return num.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+  }
+
   const labels = {
     serviceFeeA: "Monthly Retainer (Traditional Setup)",
     installFeeB: "One-Time Setup Fee (Your Model)",
@@ -79,11 +83,11 @@ export default function LeadGenROICalculator() {
               {Object.entries(results).map(([option, data]) => (
                 <div key={option} className="border rounded-xl p-6 shadow-sm bg-zinc-800 text-white">
                   <h3 className="text-lg font-semibold mb-4">Option {option}</h3>
-                  <p className="mb-1">💰 <strong>Total Cost:</strong> ${data.totalCost.toFixed(2)}</p>
-                  <p className="mb-1">📊 <strong>Cost per Lead:</strong> ${data.costPerLead.toFixed(2)}</p>
+                  <p className="mb-1">💰 <strong>Total Cost:</strong> ${formatNumber(data.totalCost)}</p>
+                  <p className="mb-1">📊 <strong>Cost per Lead:</strong> ${formatNumber(data.costPerLead)}</p>
                   <p className="mb-1">📈 <strong>Deals Closed:</strong> {data.deals.toFixed(2)}</p>
-                  <p className="mb-1">🏆 <strong>Estimated GCI:</strong> ${data.gci.toFixed(2)}</p>
-                  <p className="mb-1">🚀 <strong>Net ROI:</strong> ${data.roi.toFixed(2)}</p>
+                  <p className="mb-1">🏆 <strong>Estimated GCI:</strong> ${formatNumber(data.gci)}</p>
+                  <p className="mb-1">🚀 <strong>Net ROI:</strong> ${formatNumber(data.roi)}</p>
                 </div>
               ))}
             </div>
