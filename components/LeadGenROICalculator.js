@@ -25,8 +25,8 @@ export default function LeadGenROICalculator() {
   }
 
   const labels = {
-    serviceFeeA: "Monthly Retainer (Traditional Setup)",
-    installFeeB: "One-Time Setup Fee (Your Model)",
+    serviceFeeA: "Monthly Retainer (Old Way With Lower Profit)",
+    installFeeB: "One-Time Setup Fee (New Way With High Profit)",
     adSpendDaily: "Daily Ad Budget",
     leadCost: "Average Cost per Lead",
     leadsPerDeal: "Leads Needed to Win a Listing",
